@@ -1,0 +1,6 @@
+User-agent: Yandex
+Disallow: /cgi-bin
+Host: xname.kz
+
+User-agent: * 
+Host: xname.kz
