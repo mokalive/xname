@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Xname - Казахстанский сервис для перевода с кириллицы на латинский алфавит.</title>
+    <meta name="description" content="Казахстанский сервис для перевода с кириллицы на латинский алфавит.">
+    <meta name="keywords" content="латинский алфавит, казахско-латинский алфавит, переход на латинский алфавит, онлайн перевод, переводчик">
+    <meta name="robots" content="noyaca"/>
+    <meta name="robots" content="all"/>
+    <meta name="google-site-verification" content="1YjIrSl5qpVt_8F43vwqIT2oPDDbxrBxaNnEekZauVY" />
+    <meta name="yandex-verification" content="e85be4b0ef0e34d7" />
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="assets/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/uikit.min.css" />
+    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets/js/uikit.min.js"></script>
+    <script type="text/javascript" src="assets/js/uikit-icons.min.js"></script>
+  </head>
+  <body>
+    <div id="x-name-nav" class="uk-navbar-container uk-navbar-transparent">
+      <div id="x-name-container" class="uk-container" uk-navbar>
+        <div id="x-name-nav-left" class="uk-navbar-left"><img id="x-name-logo" src="assets/img/logo.png" alt="" title=""></div>
+        <div id="x-name-nav-right" class="uk-navbar-right">
+          <ul id="x-name-nav-list" class="uk-navbar-nav"> 
+            <li id="x-name-link"><a id="x-name-modal-about" href="#x-name-modal-about" uk-toggle>About</a></li>
+            <li id="x-name-link"><a id="x-name-link-telegram" href="https://telegram.me/xname_kz_bot" target="_blank">Telegram Bot</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="x-name-intro" class="uk-background-blend-overlay uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url(assets/img/cover.jpg);">
+      <div id="x-name-center-mode" class="uk-position-center uk-text-center uk-width-large">
+        <img if="x-name-icon" src="assets/img/icon.png" alt="" title="">
+        <p id="x-name-text" class="uk-text-center uk-h4">Казахстанский сервис для перевода с кириллицы на латинский алфавит.</p>
+        <button id="x-name-button" class="uk-button uk-button-primary" type="button"><a href="#x-name-translate-real-time" uk-scroll>Перевести текст</a></button>
+      </div>
+    </div>
+    <div id="x-name-translate" class="uk-container uk-text-center">
+      <h1 id="x-name-H1" class="uk-text-center uk-h1">Проверка имени</h1>
+      <form name="form" method="post">
+      <h2 id="x-name-my" class="uk-h2 uk-margin-small-top">Меня зовут <input class="uk-input uk-form-width-medium" name="translit" type="text" id="name" placeholder="Кожа" /><br class="uk-hidden@m"><i class="rotate uk-visible@s uk-visible@m" uk-icon="icon: refresh; ration: 2" type="submit"></i>Menin' atym <input class="uk-input uk-form-width-medium" name="result" type="text" id="alias" placeholder="Qoja" /></h2>
+      </form>
+      <p class="uk-text-center uk-text-meta">Рассказать друзьям</p>
+      <div class="pluso" data-background="transparent" data-options="medium,square,line,horizontal,nocounter,theme=02" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email"></div>
+    </div>
+    <div id="x-name-translate-real-time" class="uk-container uk-padding-large">
+      <div id="x-name-text-translit" class="uk-width-1-1">
+          <div class="uk-text-center"><img src="assets/img/ts.png" alt=""></div>
+          <div id="x-name-block" class="uk-width-1-2@m uk-width-1-1@s uk-align-left uk-padding-small"><h4 class="uk-h4 uk-visible@s">Кириллица</h4><br><textarea id="cc-translit" class="uk-textarea" rows="7" name="name" type="text" placeholder="Введите текст для перевода..."></textarea></div>
+          <div id="x-name-block" class="uk-width-1-2@m uk-width-1-1@s uk-align-left uk-padding-small"><h4 class="uk-h4 uk-visible@s">Латиница</h4><br><textarea class="uk-textarea js-textarea" rows="7" name="code" type="text" id="kz-result"></textarea><button id="copyButton" disable uk-icon="icon: copy"></button></div>
+      </div>
+    </div>
+    <footer>
+      <div id="x-name-footer" class="uk-container">
+        <div id="x-name-founder" class="uk-align-left">
+          <a id="x-name-link" href="https://recorda.kz/" class="uk-width-1-1" target="_blank">
+            <div id="x-name-f-img" class="uk-width-1-2 uk-align-left"><img src="assets/img/dev.png" alt="" title=""></div>
+            <div id="x-name-release" class="uk-width-1-2 uk-align-left"><span><b>made  by</b><br>RECORD</span></div>
+          </a>
+        </div>
+        <div id="x-name-copyright" class="uk-align-right"><p>Copyright @2017</p></div>
+      </div>
+    </footer>
+  <script>
+    var module = {};
+    function init(cyrillicToTranslit) {
+      var $source = document.querySelector('#cc-translit');
+      var $spaceRep = document.querySelector('#space-rep');
+      var $result = document.querySelector('#kz-result');
+      var value;
+      var spaceRep;
+      $source.addEventListener('input', function(e) {
+        update(value = e.target.value, spaceRep);
+      });
+      $spaceRep.addEventListener('input', function(e) {
+        update(value, spaceRep = e.target.value);
+      })
+      function update(value, spaceRep) {
+        $result.value = cyrillicToTranslit.transform(value, spaceRep);
+      }
+    }
+  </script>
+  <script type="text/javascript">(function() {
+    if (window.pluso)if (typeof window.pluso.start == "function") return;
+    if (window.ifpluso==undefined) { window.ifpluso = 1;
+    var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+    }})();
+  </script>
+  <script src="assets/js/translit.js" onload="init(module.exports())""></script>
+  <script src="assets/js/mtranslit.js"></script>
+  <script src="assets/js/copy.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Yandex.Metrika informer --> <a href="https://metrika.yandex.ru/stat/?id=46447668&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/46447668/3_0_FFFFFFFF_FFFFFFFF_0_uniques" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="46447668" data-lang="ru" /></a> <!-- /Yandex.Metrika informer --> <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter46447668 = new Ya.Metrika({ id:46447668, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/46447668" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+  <div id="x-name-modal-about" class="uk-modal-full" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+            <div class="uk-background-cover uk-visible@s" style="background-image: url('assets/img/photo.jpg');" uk-height-viewport></div>
+            <div class="uk-padding-large">
+                <h2>Новый казахский алфавит на латинице. Назарбаев подписал указ</h2>
+                <p>Президент Казахстана Нурсултан Назарбаев постановил перевести алфавит казахского языка с кириллицы на латинскую графику. Распоряжение об этом появилось на сайте <a href="http://www.akorda.kz/ru/legal_acts/decrees/o-perevode-alfavita-kazahskogo-yazyka-s-kirillicy-na-latinskuyu-grafiku" target="_blank">"Акорда"</a> 27 октября.<br>&nbsp;<br>В целях обеспечения перевода алфавита казахского языка с кириллицы на латинскую графику&nbsp;ПОСТАНОВЛЯЮ:</p>
+                <p>1. Утвердить прилагаемый алфавит казахского языка, основанный на латинской графике. &nbsp;</p>
+                <p>2. Правительству Республики Казахстан:</p>
+                <p>образовать Национальную комиссию по переводу алфавита казахского языка на латинскую графику;</p>
+                <p>обеспечить поэтапный перевод алфавита казахского языка на латинскую графику до 2025 года;</p>
+                <p>принять иные меры по реализации настоящего Указа, в том числе организационного и законодательного характера.&nbsp;</p>
+                <p>3. Контроль за исполнением настоящего Указа возложить на Администрацию Президента Республики Казахстан.</p>
+                <p>4. Настоящий Указ вводится в действие со дня его опубликования.</p>
+                <p><b>Источник - </b><a href="https://tengrinews.kz/kazakhstan_news/novyiy-kazahskiy-alfavit-latinitse-nazarbaev-podpisal-ukaz-329588/" target="_blank">TENGRI NEWS</a></p>
+            </div>
+        </div>
+    </div>
+  </div>
+  </body>
+</html>
